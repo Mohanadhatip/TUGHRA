@@ -4,7 +4,7 @@
 <p>The Tughra Library offers robust <b>End-to-End Encryption (E2EE)</b>, ensuring that data remains private and secure from the point it leaves the sender to the moment it reaches the intended recipient. With E2EE, data is encrypted on the sender's device, transmitted as unreadable ciphertext, and decrypted only by the authorized recipient, meaning no intermediaries (such as service providers or unauthorized third parties) can access the plaintext data during transit. This design is crucial for safeguarding sensitive information, as it prevents unauthorized access at any stage of data transmission. Tughra’s implementation of E2EE leverages advanced algorithms and customizable encryption cycles, allowing developers to configure secure, high-performance encryption processes directly into their applications.</p>
   <h2>1. Overview</h2>
   <p>The Tughra Library offers encryption methods such as Turgha,  Caesar, Vigenere, XOR, and custom options. With features like configurable encryption modes, base character sets, and custom keys, it provides a flexible solution for encryption and decryption.</p>
-<h2>3. Demo</h2>
+<h2>Demo</h2>
   <p>Here’s a simple <a href="https://github.com/Mohanadhatip/TUGHRA/blob/main/demo.html">demo</a> of how to use the Tughra Library to encrypt and decrypt a message, filesm images, audios, videos, and more.</p>
   
   <h2>2. Getting Started</h2>
