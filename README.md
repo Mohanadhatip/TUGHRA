@@ -15,7 +15,7 @@
       <p><strong>Installing via npm</strong></p>
     <p>You can also install the Tughra Library via npm. Run the following command in your terminal:</p>
 <pre> npm install tughra</pre>
-<p>If you have the tughra.js file locally, place it in the same directory as your HTML file or in a designated js folder. Add the following <b>&lt;script&gt;</b> tag in the <b>&lt;head&gt;</b> section of your HTML file:</p>
+<p>If you have the tughra.js file locally, place it in the same directory as your HTML file or in a designated js folder. You can also include it from a CDN or UNPKG. Add the following <b>&lt;script&gt;</b> tags in the <b>&lt;head&gt;</b> section of your HTML file:</p>
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -24,9 +24,14 @@
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;Tughra Library Guide&lt;/title&gt;
 
-  &lt;!-- Link to Tughra Library --&gt;
+  &lt;!-- Link to Tughra Library (local file) --&gt;
   &lt;script src="js/tughra.js"&gt;&lt;/script&gt;
-  
+
+  &lt;!-- Link to Tughra Library (CDN) --&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+  &lt;!-- Link to Tughra Library (UNPKG) --&gt;
+  &lt;script src="https://unpkg.com/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+
   &lt;style&gt;
     /* Your CSS styling here */
   &lt;/style&gt;
