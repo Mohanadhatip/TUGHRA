@@ -1,6 +1,6 @@
 {
   "name": "tughra",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Tughra Library offers robust End-to-End Encryption (E2EE), ensuring that data remains private and secure from the point it leaves the sender to the moment it reaches the intended recipient. With E2EE, data is encrypted on the sender's device, transmitted as unreadable ciphertext, and decrypted only by the authorized recipient, meaning no intermediaries (such as service providers or unauthorized third parties) can access the plaintext data during transit. This design is crucial for safeguarding sensitive information, as it prevents unauthorized access at any stage of data transmission. Tughra’s implementation of E2EE leverages advanced algorithms and customizable encryption cycles, allowing developers to configure secure, high-performance encryption processes directly into their applications.",
   "main": "tughra.js",
   "scripts": {
