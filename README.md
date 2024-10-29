@@ -473,5 +473,5 @@ const decryptedText = tughra.process(encryptedText, 3);</pre>
   <p>The Tughra library provides a robust encryption solution for text and files, ideal for data security and cryptographic exploration. Without knowing the fields exactly and the number of cycles, decryption using an automated attack would be nearly impossible within a reasonable timeframe.</p>
 </div>
 <div class="footer">
-  <p>For more information, visit the <a href="https://github.com/TUGHRA/tughra" target="_blank">Tughra GitHub page</a>.</p>
+  <p>For more information, visit the <a href="https://github.com/Mohanadhatip/TUGHRA/tughra" target="_blank">Tughra GitHub page</a>.</p>
 </div>
