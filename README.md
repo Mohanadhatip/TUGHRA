@@ -220,7 +220,7 @@ const decryptedText = tughra.process(encryptedText, 3);</pre>
         <a href="#section32">32. Protecting Government Networks</a><br>
         <a href="#section33">33. Weapons Management Systems</a><br>
         <a href="#section34">34. Protecting Data in Travel</a><br>
-    </div><br><br><br><
+    </div><br><br>
     <div class="section" id="section1">
         <h2>1. Protecting Personal Data</h2>
         <p>• Encrypting medical records and sensitive health data.<br>
