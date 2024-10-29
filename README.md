@@ -25,7 +25,7 @@
   &lt;title&gt;Tughra Library Guide&lt;/title&gt;
 
   &lt;!-- Link to Tughra Library (local file) --&gt;
-  &lt;script src="js/tughra.js"&gt;&lt;/script&gt;
+  &lt;script src="tughra.js"&gt;&lt;/script&gt;
 
   &lt;!-- Link to Tughra Library (CDN) --&gt;
   &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
