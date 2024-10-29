@@ -10,11 +10,11 @@
   </tr>
   <tr>
     <td>1.0.1</td>
-    <td>✅</td>
+    <td>✔️</td>
   </tr>
   <tr>
     <td>1.0.0</td>
-    <td>✅</td>
+    <td>✔️</td>
   </tr>
 </table>
 
