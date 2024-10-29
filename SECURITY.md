@@ -9,6 +9,8 @@
     <th>Supported</th>
   </tr>
   <tr>
+    <td>1.0.1</td>
+    <td>✅</td>
     <td>1.0.0</td>
     <td>✅</td>
   </tr>
