@@ -29,9 +29,9 @@
   &lt;script src="tughra.js"&gt;&lt;/script&gt;
 
   &lt;!-- Link to Tughra Library (CDN) --&gt;
-  &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.1/tughra.min.js"&gt; &lt;/script&gt;
   &lt;!-- Link to Tughra Library (UNPKG) --&gt;
-  &lt;script src="https://unpkg.com/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+  &lt;script src="https://unpkg.com/tughra@1.0.1/tughra.min.js"&gt; &lt;/script&gt;
 
   &lt;style&gt;
     /* Your CSS styling here */
@@ -65,9 +65,9 @@
   &lt;script src="tughra.js"&gt;&lt;/script&gt;
 
   &lt;!-- Link to Tughra Library (CDN) --&gt;
-  &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/tughra@1.0.1/tughra.min.js"&gt; &lt;/script&gt;
   &lt;!-- Link to Tughra Library (UNPKG) --&gt;
-  &lt;script src="https://unpkg.com/tughra@1.0.0/tughra.min.js"&gt; &lt;/script&gt;
+  &lt;script src="https://unpkg.com/tughra@1.0.1/tughra.min.js"&gt; &lt;/script&gt;
 
   
   &lt;style&gt;
