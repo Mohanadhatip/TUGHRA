@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt/Decrypt Cycle Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 6px solid #ffeeba;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        textarea,
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 0.05rem solid #3263b3;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-width: 400px;
+            max-width: 800px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        .sub-sub-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Encrypt/Decrypt Cycle</h1>
+
+        <div class="sub-container">
+            <label for="inputText">Enter text to process:</label>
+            <textarea id="inputText" rows="4">The Tughra library provides a framework for encrypting and decrypting text and files of various types using multiple algorithms, including Tughra, Caesar, Vigenère, and XOR. This guide will walk you through how to use the class and its various features.</textarea>
+            <input type="file" id="file" />
+        </div>
+
+        <div class="sub-container">
+            <label for="cycles">Number of cycles:</label>
+            <input type="number" id="cycles" value="3" min="1" />
+
+
+        </div>
+
+        <div class="sub-container">
+            <label for="unicodeGroupInput">Select an Unicode Group:</label>
+            <select id="unicodeGroupInput" multiple>
+            </select>
+            <label for="encryptionKey">Provided key for encryption/decryption operation</label>
+
+            <input type="text" id="encryptionKey" value="mEQlLJ5IkPJY7UbW" />
+            <label for="cycles">Key Length:</label>
+            <input type="number" id="keylength" value="16" min="1" />
+            <button onclick="generateKey()">Generate</button>
+        </div>
+        <div class="sub-container">
+            <label for="algorithm">algorithm?</label>
+            <select id="algorithm">
+                <option value="default">Tughra</option>
+                <option value="caesar">CAESAR</option>
+                <option value="xor">XOR</option>
+                <option value="vigenere">Vigenere</option>
+                <option value="ROT47">ROT47</option>
+                <option value="Atbash">Atbash</option>
+                <option value="Substitution">Substitution</option>
+                <option value="Base64">Base64</option>
+                <option value="ASCII">ASCII Shift</option>
+                <option value="Affine">Affine</option>
+                <option value="Unicode Shift">Unicode Shift</option>
+                <option value="Numeric">Numeric</option>
+                <option value="Reversed Caesar">Reversed Caesar</option>
+                <option value="ROT13">ROT13</option>
+                <option value="ROT18">ROT18</option>
+                <option value="ROT25">ROT25</option>
+                <option value="ROT30">ROT30</option>
+                <option value="XOR Pro">XOR Pro</option>
+                <option value="Affine Pro">Affine Pro</option>
+                <option value="Substitution Pro">Substitution Pro</option>
+            </select>
+
+        </div>
+        <div class="sub-container">
+            <label for="mode">Select action:</label>
+            <select id="mode">
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+        </div>
+        <div class="sub-container">
+            <label for="useBaseEncoding">Base?</label>
+            <select id="useBaseEncoding">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+
+            </select>
+        </div>
+        <div class="sub-container">
+            <label for="baseCharset">Base Alphabet:</label>
+            <select id="baseCharset">
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567">Base32</option>
+                <option value="0123456789abcdefghijklmnopqrstuvwxyz">Base36</option>
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz2345789">Base58</option>
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789">Base62</option>
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=">Base64</option>
+                <option value="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%&()*+-;<=>?@[]^_`{|}~">Base85 (ASCII85)</option>
+                <option value="0123456789abcdef">Base16 (Hexadecimal)</option>
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_">Base64 (Filename Safe)</option>
+                <option value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.">Base64 (URL Safe)</option>
+                <option value="⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟">Base26 (Braille)</option>
+                <option value="._">Base2 (Morse Code)</option>
+                <option value="0123456789">Base9 (Numbers)</option>
+                <option value="+-">Base2 (+-)</option>
+                <option value="⇠⇡⇢⇣">Base2 (Arrows)</option>
+                <option value="ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ">Base24 (Greek Alphabet)</option>
+                <option value="АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ">Base33 (Cyrillic Alphabet)</option>
+                <option value="אבגדהוזחטיכלמנסעפצקרשת">Base22 (Hebrew Alphabet)</option>
+                <option value="أبجدهوزحطيكلمنسعفصقرشتثخذضظغ">Base28 (Arabic Alphabet)</option>
+                <option value="ᏣᎳᎩᎠᎡᎢᎣᎤᎥᎦᎧᎨᎩᎪᎫᎬᎭᎮᎯ">Base18 (Cherokee Alphabet)</option>
+                <option value="ሀሁሂሃሄህሆሇለሉሊላሌልሎ">Base13 (Ge'ez Alphabet)</option>
+                <option value="ᎠᎡᎢᎣᎤᎥᎦᎧᎨᎩᎪᎫᎬᎭᎮᎯ">Base17 (Old Italic Alphabet)</option>
+                <option value="ጰጱጲጳጴጵጶጷጸጹጺጻጼጽጾ">Base15 (Ethiopic Alphabet)</option>
+                <option value="ⰀⰁⰂⰃⰄⰅⰆⰇⰈⰉⰊⰋⰌⰍⰎⰏ">Base16 (Glagolitic Alphabet)</option>
+                <option value="ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ">Base14 (Korean Hangul)</option>
+                <option value="あいうえおかきくけこさしすせそ">Base15 (Japanese Hiragana)</option>
+                <option value="アイウエオカキクケコサシスセソ">Base15 (Japanese Katakana)</option>
+
+                <option value="ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛋᛏᛒᛗᛚ">Base24 (Runes)</option>
+                <option value="〆ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦ">Base37 (Chinese Zhuyin)</option>
+                <option value="ᎠᎡᎢᎣᎤᎥᎦᎧᎨᎩᎪᎫᎬᎭᎮᎯ">Base17 (Old Italic Alphabet)</option>
+                <option value="𐑖𐑗𐑘𐑙𐑚𐑛𐑜𐑝𐑞𐑟𐑠𐑡𐑢𐑣𐑤𐑥𐑦𐑧𐑨𐑩𐑪𐑫𐑬𐑭">Base24 (Shavian Alphabet)</option>
+                <option value="ᏐᏑᏒᏓᏕᏗᏘᏙᏚᏛ">Base10 (Cherokee Numerals)</option>
+
+            </select>
+        </div>
+
+
+        <div class="sub-container">
+            <button id="processBtn">Process</button>
+            <button id="swap">swap</button>
+        </div>
+
+        <div class="sub-container">
+            <label for="outputText">Result:</label>
+            <textarea id="outputText" rows="4" readonly></textarea>
+            <button onclick="document.getElementById('outputText').value='';">delete result</button>
+        </div>
+        <div id="note">
+            <p id="inputTextinfo"></p>
+            <p id="outputTextinfo"></p>
+        </div>
+    </div>
+    <script src="npm2.js?mjnj"></script>
+    <script>
+        document.getElementById('file').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                // Define the onload event to handle the file data
+                reader.onload = function(event) {
+                    const result = event.target.result; // Get the Data URL from the reader
+                    document.getElementById('inputText').value = result; // Set the Data URL in the input field
+                };
+
+                // Read the file as a Data URL
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+        document.getElementById('swap').addEventListener('click', function() {
+            const inputText = document.getElementById('inputText').value;
+            const outputText = document.getElementById('outputText').value;
+
+            // Swap text immediately to improve perceived performance
+            document.getElementById('inputText').value = outputText;
+            document.getElementById('outputText').value = inputText;
+        });
+
+        // Check if the browser supports Web Workers
+        if (window.Worker) {
+            const worker = new Worker('worker.js'); // Path to the worker script
+
+            document.getElementById('processBtn').addEventListener('click', function() {
+                const text = document.getElementById('inputText').value;
+                const cycles = parseInt(document.getElementById('cycles').value) || 5;
+                const baseCharset = document.getElementById('baseCharset').value;
+                const mode = document.getElementById('mode').value;
+                const useBaseEncoding = document.getElementById('useBaseEncoding').value === 'true';
+                const algorithm = document.getElementById('algorithm').value;
+                const encryptionKey = document.getElementById('encryptionKey').value;
+
+                // Post data to the worker
+                worker.postMessage({
+                    text,
+                    cycles,
+                    baseCharset,
+                    mode,
+                    useBaseEncoding,
+                    algorithm,
+                    encryptionKey
+                });
+
+                // Listen for messages from the worker
+                worker.onmessage = function(e) {
+                    const {
+                        result,
+                        error
+                    } = e.data;
+                    if (error) {
+                        console.error("Error during encryption/decryption:", error);
+                    } else {
+                        document.getElementById('outputText').value = result;
+                        getinfo();
+                    }
+                };
+            });
+        } else {
+            alert("Web Workers are not supported in your browser.");
+        }
+
+        const tughra = new TughraLibrary();
+
+
+        function generateKey() {
+            const cycles = document.getElementById('keylength').value; // Get number of cycles
+
+            // Get the dropdown element
+            const groupDropdown = document.getElementById('unicodeGroupInput');
+
+            // Retrieve all selected options and join them with a comma separator
+            const groupNames = Array.from(groupDropdown.selectedOptions).map(option => option.value).join(', ');
+
+            console.log(groupNames); // This will print a comma-separated string of selected group names
+
+            // Generate the key with Tughra using the group names as a string
+            const key = tughra.generateKey(cycles, groupNames);
+
+            // Display the key in the input field
+            document.getElementById('encryptionKey').value = key.join('');
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Assuming you have already created an instance of your class
+            const tughra = new TughraLibrary(); // Adjust to your class instance
+
+            // Fetch the available Unicode groups
+            const unicodeGroups = tughra.getUnicodeGroups();
+
+            // Get the dropdown element where the options will be added
+            const groupDropdown = document.getElementById('unicodeGroupInput');
+
+            // Clear previous options (if any) to avoid duplicates
+            groupDropdown.innerHTML = '';
+
+            // Get the names of all groups and join them into a comma-separated string
+            const allGroupNames = unicodeGroups.map(group => group.name).join(', ');
+
+            // Add the "Select All" option at the top
+            const selectAllOption = document.createElement('option');
+            selectAllOption.value = 'all'; // Set a unique value for "All"
+            selectAllOption.textContent = 'All Unicode Groups'; // Displayed text
+            groupDropdown.appendChild(selectAllOption); // Add to dropdown
+
+            // Populate the dropdown with individual groups
+            unicodeGroups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group.name;
+                option.textContent = group.name;
+
+                // Optionally select specific groups by default
+                if (group.name === 'Uppercase English' || group.name === 'Lowercase English' || group.name === 'Numbers') {
+                    option.selected = true;
+                }
+
+                groupDropdown.appendChild(option); // Add to dropdown
+            });
+            document.getElementById('unicodeGroupInput').addEventListener('change', () => {
+                const selectedOptions = Array.from(document.getElementById('unicodeGroupInput').selectedOptions).map(option => option.value);
+                console.log(selectedOptions);
+            });
+
+
+        });
+
+        function getinfo() {
+            const resultText = document.getElementById('outputText').value;
+            const text = document.getElementById('inputText').value;
+            document.getElementById('note').classList.add('note');
+            const inputstats = tughra._calculateStats(text);
+            document.getElementById('inputTextinfo').innerHTML =
+                'Input ⇢ <br>language: ' + tughra.detectLanguage(text) + ', <br>Size: ' + tughra._formatSize(inputstats.size) + ',\n' +
+                '<br>Characters: ' + inputstats.characters + ',\n' +
+                '<br>Words: ' + inputstats.words + ',\n' +
+                '<br>Lines: ' + inputstats.lines + ',\n' +
+                '<br>Type: ' + inputstats.type + ',\n' +
+                '<br>Is Blob: ' + (inputstats.isBlob ? 'Yes' : 'No') + ',\n' +
+                '<br>Is Data URI: ' + (inputstats.isDataURI ? 'Yes' : 'No');
+            const outputstats = tughra._calculateStats(resultText);
+            document.getElementById('outputTextinfo').innerHTML =
+                'Output ⇢ <br>language: ' + tughra.detectLanguage(resultText) + ', <br>Size: ' + tughra._formatSize(outputstats.size) + ',\n' +
+                '<br>Characters: ' + outputstats.characters + ',\n' +
+                '<br>Words: ' + outputstats.words + ',\n' +
+                '<br>Lines: ' + outputstats.lines + ',\n' +
+                '<br>Type: ' + outputstats.type + ',\n' +
+                '<br>Is Blob: ' + (outputstats.isBlob ? 'Yes' : 'No') + ',\n' +
+                '<br>Is Data URI: ' + (outputstats.isDataURI ? 'Yes' : 'No');
+        }
+    </script>
+</body>
+
+</html>
