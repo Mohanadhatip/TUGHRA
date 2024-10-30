@@ -482,4 +482,4 @@ const decryptedText = tughra.process(encryptedText, 3);</pre>
   <p>For more information, visit the <a href="https://github.com/Mohanadhatip/TUGHRA/" target="_blank">Tughra GitHub page</a>.</p>
 </div>
 
-
+<iframe src="https://github.com/sponsors/Mohanadhatip/button" title="Sponsor Mohanadhatip" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
