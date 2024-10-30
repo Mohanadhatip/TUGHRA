@@ -1,0 +1,26 @@
+{
+  "name": "tughra",
+  "version": "1.0.1",
+  "description": "The Tughra Library provides robust End-to-End Encryption (E2EE) for secure, private data transmission, leveraging advanced algorithms and customizable encryption cycles.",
+  "main": "tughra.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mohanadhatip/TUGHRA.git"
+  },
+  "keywords": [
+    "End-to-End",
+    "Encryption",
+    "Decryption",
+    "Algorithm",
+    "Cipher",
+    "Security",
+    "Cryptography",
+    "Data Protection",
+    "Privacy"
+  ],
+  "author": "Mohanad Alkhatib",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  }
+}
