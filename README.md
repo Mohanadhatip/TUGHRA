@@ -5,7 +5,7 @@
   <h2>1. Overview</h2>
   <p>The Tughra Library offers encryption methods such as Turgha,  Caesar, Vigenere, XOR, and custom options. With features like configurable encryption modes, base character sets, and custom keys, it provides a flexible solution for encryption and decryption.</p>
 <h2>Demo</h2>
-  <p>Here’s a simple <a href="https://mohanadhatip.github.io/TUGHRA/demo.html">demo</a> of how to use the Tughra Library to encrypt and decrypt a message, files, images, audios, videos, and more.</p>
+  <p>Here’s a  <a href="https://mohanadhatip.github.io/TUGHRA/index.html">simple demo</a> and <a href="https://mohanadhatip.github.io/TUGHRA/demo.html">advanced demo</a> of how to use the Tughra Library to encrypt and decrypt a message, files, images, audios, videos, and more.</p>
   <img src="demo.gif" alt="Demo" />
 
   <h2>2. Getting Started</h2>
