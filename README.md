@@ -2,7 +2,21 @@
   <h1>Tughra Library Guide</h1>
 <p>The Tughra Library offers robust <b>End-to-End Encryption (E2EE)</b>, ensuring that data remains private and secure from the point it leaves the sender to the moment it reaches the intended recipient. With E2EE, data is encrypted on the sender's device, transmitted as unreadable ciphertext, and decrypted only by the authorized recipient, meaning no intermediaries (such as service providers or unauthorized third parties) can access the plaintext data during transit. This design is crucial for safeguarding sensitive information, as it prevents unauthorized access at any stage of data transmission. Tughra’s implementation of E2EE leverages advanced algorithms and customizable encryption cycles, allowing developers to configure secure, high-performance encryption processes directly into their applications.</p>
   <h2>1. Overview</h2>
-  <p>The Tughra Library offers encryption methods such as Turgha,  Caesar, Vigenere, XOR, and custom options. With features like configurable encryption modes, base character sets, and custom keys, it provides a flexible solution for encryption and decryption.</p>
+  <p>The Tughra Library offers encryption methods such as <code>Tughra</code>, <code>caesar</code>, <code>vigenere</code>, <code>XOR</code>,
+     <code>ROT47</code>, 
+      <code>Substitution</code>, 
+       <code>Base64</code>, 
+        <code>ASCII Shift</code>, 
+         <code>Unicode Shift</code>, 
+          <code>Numeric</code>, 
+           <code>Reversed Caesar</code>, 
+            <code>ROT13</code>, 
+             <code>ROT18</code>, 
+             <code>ROT25</code>, 
+             <code>XOR Pro</code>, 
+             <code>Affine Pro</code>, 
+             <code>Substitution Pro</code>, 
+    <code>ROT30</code>, <code>Affine</code>, <code>Atbash</code>, or custom options. With features like configurable encryption modes, base character sets, and custom keys, it provides a flexible solution for encryption and decryption.</p>
 <h2>Demo</h2>
   <p>Here’s a  <a href="https://mohanadhatip.github.io/TUGHRA/index.html">simple demo</a> and <a href="https://mohanadhatip.github.io/TUGHRA/demo.html">advanced demo</a> of how to use the Tughra Library to encrypt and decrypt a message, files, images, audios, videos, and more.</p>
   <img src="demo.gif" alt="Demo" />
