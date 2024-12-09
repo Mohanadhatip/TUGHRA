@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search XLSX File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search in XLSX File</h1>
+        <input type="text" id="searchInput" placeholder="Search..." oninput="searchTable()">
+        <table id="resultTable">
+            <thead>
+                <tr id="tableHeader"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.19.0/xlsx.full.min.js"></script>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const tableHeader = document.getElementById('tableHeader');
+        const tableBody = document.getElementById('tableBody');
+
+        let data = [];
+
+        // Fetch and parse the XLSX file from the server
+        fetch('file.xlsx')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+
+                populateTable(sheetData);
+            })
+            .catch(error => console.error('Error loading XLSX file:', error));
+
+        // Populate table with XLSX data
+        function populateTable(sheetData) {
+            data = sheetData;
+
+            // Populate headers
+            if (data.length > 0) {
+                data[0].forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    tableHeader.appendChild(th);
+                });
+            }
+
+            // Populate rows
+            data.slice(1).forEach(row => {
+                const tr = document.createElement('tr');
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Filter table rows based on search input
+        function searchTable() {
+            const query = searchInput.value.toLowerCase();
+            Array.from(tableBody.rows).forEach(row => {
+                const cells = Array.from(row.cells);
+                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+                row.style.display = matches ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
