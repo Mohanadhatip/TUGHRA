@@ -69,6 +69,16 @@
                 })
                 .catch(error => console.error('Error loading XLSX file:', error));
 
+            // Define the searchTable function here
+            function searchTable() {
+                const query = searchInput.value.toLowerCase();
+                Array.from(tableBody.rows).forEach(row => {
+                    const cells = Array.from(row.cells);
+                    const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+                    row.style.display = matches ? '' : 'none';
+                });
+            }
+
             // Populate table with XLSX data
             function populateTable(sheetData) {
                 data = sheetData;
@@ -91,16 +101,6 @@
                         tr.appendChild(td);
                     });
                     tableBody.appendChild(tr);
-                });
-            }
-
-            // Filter table rows based on search input
-            function searchTable() {
-                const query = searchInput.value.toLowerCase();
-                Array.from(tableBody.rows).forEach(row => {
-                    const cells = Array.from(row.cells);
-                    const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
-                    row.style.display = matches ? '' : 'none';
                 });
             }
         });
