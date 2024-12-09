@@ -50,58 +50,60 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.19.0/xlsx.full.min.js"></script>
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const tableHeader = document.getElementById('tableHeader');
-        const tableBody = document.getElementById('tableBody');
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableHeader = document.getElementById('tableHeader');
+            const tableBody = document.getElementById('tableBody');
 
-        let data = [];
+            let data = [];
 
-        // Fetch and parse the XLSX file from the server
-        fetch('file.xlsx')
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => {
-                const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
-                const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
+            // Fetch and parse the XLSX file from the server
+            fetch('file.xlsx')
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                    const sheetName = workbook.SheetNames[0];
+                    const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
 
-                populateTable(sheetData);
-            })
-            .catch(error => console.error('Error loading XLSX file:', error));
+                    populateTable(sheetData);
+                })
+                .catch(error => console.error('Error loading XLSX file:', error));
 
-        // Populate table with XLSX data
-        function populateTable(sheetData) {
-            data = sheetData;
+            // Populate table with XLSX data
+            function populateTable(sheetData) {
+                data = sheetData;
 
-            // Populate headers
-            if (data.length > 0) {
-                data[0].forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    tableHeader.appendChild(th);
+                // Populate headers
+                if (data.length > 0) {
+                    data[0].forEach(header => {
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        tableHeader.appendChild(th);
+                    });
+                }
+
+                // Populate rows
+                data.slice(1).forEach(row => {
+                    const tr = document.createElement('tr');
+                    row.forEach(cell => {
+                        const td = document.createElement('td');
+                        td.textContent = cell;
+                        tr.appendChild(td);
+                    });
+                    tableBody.appendChild(tr);
                 });
             }
 
-            // Populate rows
-            data.slice(1).forEach(row => {
-                const tr = document.createElement('tr');
-                row.forEach(cell => {
-                    const td = document.createElement('td');
-                    td.textContent = cell;
-                    tr.appendChild(td);
+            // Filter table rows based on search input
+            function searchTable() {
+                const query = searchInput.value.toLowerCase();
+                Array.from(tableBody.rows).forEach(row => {
+                    const cells = Array.from(row.cells);
+                    const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
+                    row.style.display = matches ? '' : 'none';
                 });
-                tableBody.appendChild(tr);
-            });
-        }
-
-        // Filter table rows based on search input
-        function searchTable() {
-            const query = searchInput.value.toLowerCase();
-            Array.from(tableBody.rows).forEach(row => {
-                const cells = Array.from(row.cells);
-                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(query));
-                row.style.display = matches ? '' : 'none';
-            });
-        }
+            }
+        });
     </script>
 </body>
 </html>
